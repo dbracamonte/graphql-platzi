@@ -1,17 +1,19 @@
 const { makeExecutableSchema } = require('graphql-tools') 
+const resolvers = require('./resolvers')
 
 const typeDefs = `
-	# Esto es un curso en el sistema
+	#Esto es un curso en el sistema
 	type Curso {
 		id: ID!
 		titulo: String!
+		#Esta es la descripción del curso
 		descripcion: String!
-		proferso: Profesor
+		profesor: Profesor
 		rating: Float
 		comentarios: [Comentario]
 	}
 
-	# Profesores que distan Cursos
+	#Profesores que distan Cursos
 	type Profesor {
 		id: ID!
 		nombre: String!
@@ -38,8 +40,10 @@ const typeDefs = `
 		profesor(id: Int): Profesor
 	}
 `
+
 const schema = makeExecutableSchema({
-	typeDefs
+	typeDefs,
+	resolvers
 })
 
 module.exports = schema
